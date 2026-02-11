@@ -1,0 +1,64 @@
+.Bar {
+    height: 58px;
+    background-color: #FFFFFF;
+    color: black;
+    padding: 10px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    justify-content: left;
+    align-items: center;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.Logo {
+    color: white;
+    font-weight: bold;
+    font-family: 'Consolas';
+    font-size: 25px;
+    margin-left: 50px;
+}
+
+.SearchInput {
+    margin-left: 50px;
+    display: flex;
+    width : 50%;
+    gap: 10px;
+}
+.SearchInput input {
+    width: 100%;
+    border-radius: 24px;
+    background-color: #ECECEC;
+}
+
+.SearchInput input::placeholder {
+    color: #A0A0A0;
+}
+
+.SearchInput button {
+    display: flex;
+    background-color: #ECECEC;
+    border-radius: 25px;
+    color: #4B4D4E;
+    gap: 10px;
+}
+
+.BarButtons {
+    display: flex;
+    gap: 20px;
+    margin-left: auto;
+    margin-right: 50px;
+}
+.BarButtons button {
+    background-color: #ECECEC;
+    color: white;
+    border-radius: 25px;
+    color: #4B4D4E;
+}
+
+.BarButtons img {
+    width: 30px;
+    cursor: pointer;
+}

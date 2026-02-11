@@ -1,0 +1,62 @@
+.ProductItem {
+	border-radius: 10px;
+	width: 350px;
+    height: 350px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+    gap: 10px;
+
+	background-color: white;
+	border: 1px solid #CECECE;
+	
+    font-family: "Radio Canada";
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25);
+	margin: 15px;
+
+    padding: 20px;
+}
+
+
+.ProductTitle {
+	font-size: 25px;
+	font-weight: medium;
+	color: black;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.ProductImageCont {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+}
+
+.ProductImage {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+}
+
+.Payment {
+    display: flex;
+    gap: 20px;
+}
+
+.Price {
+    color: #FF8A76;
+    font-weight: medium;
+    font-size: 25px;
+}
+
+.ButtonCart {
+    background-color: #F3F3F3;
+    color: #4B4D4E;
+    font-size: medium;
+    border-radius: 25px;
+}
