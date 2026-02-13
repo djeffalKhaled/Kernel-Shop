@@ -3,13 +3,22 @@ import switchImage from "../images/bd4808_08cd1474a7bc498099436aa70333d531~mv2.p
 import ps4Image from "../images/ps4-slim-image-block-01-en-24jul20.png"
 import ps5Image from "../images/PS5-Slim-Console-Box-Package.png"
 import Product from "./Product"
+import { useEffect } from "react"
 
-function ProductList() {
+// @ts-ignore
+function ProductList({productCategorie}) {
+  /*From the categorie prop, SELECT all products that match this given categorie
+  and change products' value to it, this should show it inshallah */
   const products = [
     { id: 1, image: switchImage, name: "Nintendo Switch 2", price: 50000 },
     { id: 2, image: ps4Image, name: "Playstation 4", price: 40000 },
     { id: 3, image: ps5Image, name: "Playstation 5", price: 130000 }
   ];
+
+  useEffect(() => {
+          console.log("Product List categorie :", productCategorie);
+  }, [productCategorie]);
+
 
   return (
     <>
