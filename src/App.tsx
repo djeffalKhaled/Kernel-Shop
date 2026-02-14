@@ -5,17 +5,46 @@ import Product from './component/Product'
 import CategorieBar from "./component/CategorieBar"
 import ProductList from "./component/ProductList"
 import { useState } from "react"
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom"
+import AddProduct from "./component/AddProduct"
+import NavBarSupplier from "./component/NavBarSupplier"
 
 function App() {
-  const [productCategorie, setProductCategorie] = useState("");
+    const [productCategorie, setProductCategorie] = useState("");
 
-  return (
-    <>
-    <NavBar></NavBar>
-    <CategorieBar updateCategorie = {setProductCategorie}></CategorieBar>
-    <ProductList productCategorie = {productCategorie}></ProductList>
-    </>
-  )
+    function ClientPage() {
+        return (
+            <>
+            <NavBar></NavBar>
+            <CategorieBar updateCategorie = {setProductCategorie}></CategorieBar>
+            <ProductList productCategorie = {productCategorie}></ProductList>
+            </>
+        )
+    }
+
+    function SupplierPage() {
+        return (
+            <>
+            <NavBarSupplier></NavBarSupplier>
+            <CategorieBar updateCategorie = {setProductCategorie}></CategorieBar>
+            <ProductList productCategorie = {productCategorie}></ProductList>
+            </>
+        )
+    }
+
+    return (
+        <BrowserRouter>
+        <nav>
+            <Link to="/client">Client Page</Link> |{" "}
+            <Link to="/supplier">Supplier Page</Link> |{" "}
+        </nav>
+
+        <Routes>
+            <Route path = "/client" element = {<ClientPage></ClientPage>}></Route>
+            <Route path = "/supplier" element = {<SupplierPage></SupplierPage>}></Route>
+        </Routes>
+        </BrowserRouter>
+    )
 }
 
 export default App
