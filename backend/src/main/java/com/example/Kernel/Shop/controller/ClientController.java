@@ -71,10 +71,7 @@ public class ClientController {
         return ResponseEntity.ok(Map.of("token", token));
     }
 
-
-
-
-    @GetMapping("/clients")
+    @GetMapping
     public List<Client> listClients() {
         return clientRepository.findAll();
     }

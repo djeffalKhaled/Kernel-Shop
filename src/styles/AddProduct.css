@@ -1,0 +1,37 @@
+.Background {
+    position: absolute;
+    background-color: #0000003b;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+.ProductForm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: #ffffff;
+    color: black;
+    padding: 50px;
+    gap: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Info {
+    text-align: center;
+    margin-top: 50px;
+    font-family: "Radio Canada";
+    background-color: #efefef;
+    width : 30%;
+    padding: 10px;
+    border-radius: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}

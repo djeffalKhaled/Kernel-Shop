@@ -16,9 +16,9 @@ public class Product {
     private String id;
     private String name;
     private String description;
+    private String categorie; 
     private String imageUrl;// here i think is better to get image Url??
     private int stock;
     private int price;
-
 
 }
