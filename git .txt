@@ -1,0 +1,3 @@
+add changement : git add . 
+official :  git commit -m "message of changes "
+bch tdir maj  : git push origin akram 

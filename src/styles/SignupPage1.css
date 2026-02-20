@@ -1,0 +1,66 @@
+.FormBackground {
+    position: absolute;
+    background-color: #0000003b;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+.Form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: #ffffff;
+    color: black;
+    padding: 50px;
+    gap: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.InputVal {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+
+input {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: 'Arial';
+    background-color: #E3E3E3;
+    color: black;
+    transition: border-color 0.25s;
+}
+
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: 'Arial';
+  background-color: #456882;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #ffffff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focu-color;
+}
+
+
