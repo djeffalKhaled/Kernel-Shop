@@ -4,7 +4,7 @@ import "../styles/SignupPage.css"
 // @ts-ignore
 function Signup({onClose}) {
     const [isRegister, setIsRegister] = useState(false);
-    const [userType, setUserType] = useState(""); 
+    const [userType, setUserType] = useState("clients"); 
 
     const [formData, setFormData] = useState({
         username: "",
