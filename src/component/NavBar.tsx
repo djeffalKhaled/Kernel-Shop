@@ -12,7 +12,8 @@ import SignupLogin from "./SignupLogin"
 
 
 // @ts-ignore
-function NavBar({updateMainCateg, updateType}) {
+function NavBar({updateMainCateg, updateType, updateSearch}) {
+    const [search, setSearch] = useState("");
     const [showSignupComp, setShowSignup] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
     const [showCategories, setShowCategories] = useState(false);
@@ -49,7 +50,12 @@ function NavBar({updateMainCateg, updateType}) {
 
 
                 <div className="SearchInput">
-                    <input type="text" placeholder="Rechercher un produit..." />
+                    <input type="text" placeholder="Rechercher un produit..." 
+                    value={search}
+                    onChange={(e) => {
+                        setSearch(e.target.value);
+                        updateSearch(e.target.value);
+                    }}/>
                     <div className = "Categories" onMouseEnter = {() => setShowCategories(true)} onMouseLeave = {() => setShowCategories(false)}>
                         <button type="button">
                             <img src={hamBurgMenu} className = "HamburgerIcon" />

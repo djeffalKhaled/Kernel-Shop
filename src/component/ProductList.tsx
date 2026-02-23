@@ -8,11 +8,14 @@ import { useEffect, useState } from "react"
 const PORT_URL = import.meta.env.VITE_PORT_URL; 
 
 // @ts-ignore
-function ProductList({productType, productCategorie}) {
+function ProductList({productType, productCategorie, productNameSearch}) {
     /*From the categorie prop, SELECT all products that match this given categorie
     and change products' value to it, this should show it inshallah */
     const [products, setProducts] = useState<any[]>([]);
     const [loading, setLoading] = useState(true); 
+    const filteredProducts = products.filter(p =>
+        p.name.toLowerCase().includes(productNameSearch.toLowerCase())
+    );
 
     function toSlug(value: string): string {
         return value.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^\w\-]+/g, "");
@@ -114,10 +117,10 @@ function ProductList({productType, productCategorie}) {
         <>
             {
             loading ? (<div className="Info">Chargement des produits...</div>) : 
-            products.length === 0 ? (<div className="Info">Aucun produit n'est actuellement disponible.</div>) : 
+            filteredProducts.length === 0 ? (<div className="Info">Aucun produit n'est actuellement disponible.</div>) : 
             (
             <div className="ProductList">
-                {products.map((item) => (
+                {filteredProducts.map((item) => (
                     <Product 
                     productId={item.id} 
                     title={item.name} 

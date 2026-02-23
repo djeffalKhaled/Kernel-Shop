@@ -8,7 +8,7 @@ function ClientPage() {
     const location = useLocation();
     const [productCategory, setProductCategorie] = useState("Composants PC"); // default categ
     const [productType, setProductType] = useState("");
-
+    const [search, setSearch] = useState("");
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const urlCategory = params.get("category");
@@ -19,9 +19,9 @@ function ClientPage() {
 
     return (
         <>
-            <NavBar updateMainCateg={setProductCategorie} updateType={setProductType}></NavBar>
+            <NavBar updateMainCateg={setProductCategorie} updateType={setProductType} updateSearch = {setSearch}></NavBar>
             <CategorieBar category={productCategory} updateType={setProductType}></CategorieBar>
-            <ProductList productType={productType} productCategorie={productCategory}></ProductList>
+            <ProductList productType={productType} productCategorie={productCategory} productNameSearch = {search} ></ProductList>
         </>
     );
 }
