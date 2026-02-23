@@ -11,92 +11,109 @@ import { useState } from "react"
 import SignupLogin from "./SignupLogin"
 
 
+// @ts-ignore
+function NavBar({updateMainCateg, updateType}) {
+    const [showSignupComp, setShowSignup] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(false);
+    const [showCategories, setShowCategories] = useState(false);
+    const toggleDropdown = () => {setShowDropdown(!showDropdown)};
+    const toggleCategories = () => {setShowCategories(!showCategories)};
+    const [language, setLanguage] = useState("Francais");
+    const [isCartOpen, setIsCartOpen] = useState(false);
 
-function NavBar() {
-  
-  const [showSignupComp, setShowSignup] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [language, setLanguage] = useState("Francais"); 
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const toggleDropdown = () => setShowDropdown(!showDropdown);
+    const handleSelect = (lang: string) => {
+        setLanguage(lang);
+        setShowDropdown(false);
+    };
+
+    const flags: Record<string, string> = {
+        English: ukIcon,
+        French: frIcon,
+        Arabic: algIcon,
+    };
+
+    function showSignup() {
+        setShowSignup(!showSignupComp);
+    }
+
+    const handleCategories = (categ: string) => {
+        updateMainCateg(categ);
+        updateType(""); // inits the type to nothing for the user to choose (ProductList will show all products of a category)
+        window.history.pushState(null, "", `/client/category/${encodeURIComponent(categ)}`);
+    };
+
+    return (
+        <>
+            <div className="Bar">
+                <img className="Logo" src={kernelIcon} style={{ width: "124px" }} />
 
 
-  const handleSelect = (lang: string) => {
-    setLanguage(lang);
-    setShowDropdown(false); 
-  };
-
-  const flags: Record<string, string> = {
-    English: ukIcon,
-    French: frIcon,
-    Arabic: algIcon,
-  };
-
-  function showSignup() {
-    setShowSignup(!showSignupComp);
-  }
-  
-  return (
-    <>
-      <div className = "Bar">
-            <img className = "Logo" src = {kernelIcon} style={{width: "124px"}}/>
-
-
-            <div className = "SearchInput">
-                <input type = "text" placeholder="Rechercher un produit..."/>
-                <button type = "button">
-                  <img src = {hamBurgMenu}/>
-                  Categories
-                </button>
-            </div>
-          <div className="RightSection">
-            <div className = "IconBtn">
-                    <div className="IconBtn" onClick={() => setIsCartOpen(true)}>
-                      <img src={shopingIcon} alt="Cart" />
+                <div className="SearchInput">
+                    <input type="text" placeholder="Rechercher un produit..." />
+                    <div className = "Categories" onMouseEnter = {() => setShowCategories(true)} onMouseLeave = {() => setShowCategories(false)}>
+                        <button type="button">
+                            <img src={hamBurgMenu} className = "HamburgerIcon" />
+                            Categories
+                        </button>
+                        {showCategories && (
+                            <div className="CategoriesPopup">
+                                {["Composants PC", "Moniteurs", "Consoles", "Accessoires Gaming", "Péripheriques PC", "Réseaux"].map((categ) => (
+                                    <div key={categ} className="CategoryOption" onClick={() => handleCategories(categ)}>
+                                        <span>{categ}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
+                </div>
+
+                <div className = "BarButtons">
+                    <div className = "IconButton">
+                        <img src = {shopingIcon} onClick = {() => setIsCartOpen(true)} alt = "Cart"></img>
+                    </div>
+
+                    <div className = "IconButton LanguageButton" onMouseEnter = {() => setShowDropdown(true)} onMouseLeave = {() => setShowDropdown(false)}>
+                        <img src = {languageIcon} alt = "Language"></img>
+                        {showDropdown && (
+                            <div className="LanguagePopup">
+                                {["English", "French", "Arabic"].map((lang) => (
+                                    <div key={lang} className="LanguageOption" onClick={() => handleSelect(lang)}>
+                                        <img src={flags[lang]} alt={lang} className="FlagIcon" />
+                                        <span>{lang}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    <div className = "IconButton">
+                        <img src = {accountIcon} onClick = {showSignup} alt = "Account"></img>
+                    </div>
+                </div>
             </div>
 
-            <div className="IconBtn">
-                <img src = {languageIcon} alt="Language" className="IconBtn" onClick={toggleDropdown}/>
-                {showDropdown && (
-                  <div className="LanguagePopup">
-                    {["English", "French", "Arabic"].map((lang) => (
-                      <div key={lang} className="LanguageOption" onClick={() => handleSelect(lang)}>
-                        <img src={flags[lang]} alt={lang} className="FlagIcon" />
-                        <span>{lang}</span>
-                      </div>
-                    ))}
-                    </div>
-                    )}
-            </div >
-              <div className="IconBtn" onClick={showSignup}>   
-                <img src = {accountIcon} alt="Account" onClick={showSignup}/>
-              </div>
-
-              {showSignupComp && (
+            
+            {showSignupComp && (
                 <SignupLogin onClose={() => setShowSignup(false)} />
-              )}
+            )}
+
+            <div className={`CartPanel ${isCartOpen ? "open" : ""}`}>
+                <div className="CartHeader">
+                    <h3>Mon Panier</h3>
+                    <button className="CloseBtn" onClick={() => setIsCartOpen(false)}>
+                        X
+                    </button>
+                </div>
+                <div className="CartContent">
+                    <p>Votre panier est vide.</p>
+                </div>
             </div>
-          </div>
 
-          <div className={`CartPanel ${isCartOpen ? "open" : ""}`}>
-        <div className="CartHeader">
-          <h3>Mon Panier</h3>
-          <button className="CloseBtn" onClick={() => setIsCartOpen(false)}>
-            X 
-          </button>
-        </div>
-        <div className="CartContent">
-          <p>Votre panier est vide.</p>
-          {/* You can map over cart items here later */}
-        </div>
-      </div>
-
-      {isCartOpen && (
-        <div className="CartOverlay" onClick={() => setIsCartOpen(false)}></div>
-      )}
-    </>
-  );
+            {isCartOpen && (
+                <div className="CartOverlay" onClick={() => setIsCartOpen(false)}></div>
+            )}
+        </>
+    );
 }
 
 export default NavBar;

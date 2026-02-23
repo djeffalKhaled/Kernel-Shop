@@ -1,45 +1,39 @@
 import { useEffect, useState } from "react";
 import "../styles/CategorieBar.css"
+import { categorytypes } from "../config/categorytypes";
 
 // @ts-ignore
-function CategorieBar({updateCategorie}) {
-    /* Fetches all categories from backend and shows them */
+function CategorieBar({category, updateType}) {
+    /* of a given category, shows all of its types */
 
 
     const [categType, setCategType] = useState("");
 
     function updateCateg(type : string) {
+        console.log("Gotten type : ", type);
         setCategType(type);
-        updateCategorie(type);
+        updateType(type);
     }
 
-
     useEffect(() => {
-        console.log("Current categorie :", categType);
-    }, [categType]);
 
+    }, [category]);
 
-    // for now this is a horrible method but i will come up with a better solution at some point
-    // this section needs more work
+    // gets all the exact subcategories within the maincateg (i suck at naming things wth)
+    const types = categorytypes[category] || [];
+
     return (
-        <>
-            <div className = "CategorieBar">
-                <div className="Title">{"> COMPOSANTS PC"}</div>
-                <ul className = "List">
-                    <li onClick={() => updateCateg("CPU")}>CPU</li>
-                    <li onClick={() => updateCateg("Motherboard")}>Carte Mére</li>
-                    <li onClick={() => updateCateg("RAM")}>RAM</li>
-                    <li onClick={() => updateCateg("GPU")}>GPU</li>
-                    <li onClick={() => updateCateg("Boitiers")}>Boitiers</li>
-                    <li onClick={() => updateCateg("Alimentation")}>Alimentation</li>
-                    <li onClick={() => updateCateg("Stockage")}>Stockage</li>
-                    <li onClick={() => updateCateg("Refroidissement")}>Refroidissement</li>
-                </ul>
-
-            </div>
-        
-        </>
-    )
+    <div className="CategorieBar">
+        <div className="Title">{"> " + category.toUpperCase()}</div>
+        <ul className="List">
+            {types.map((item : any) => (
+                <li key={item} onClick={() => updateCateg(item)}>
+                    {item}
+                </li>
+            ))}
+        </ul>
+    </div>
+    );
 }
 
 export default CategorieBar

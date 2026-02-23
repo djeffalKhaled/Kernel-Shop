@@ -8,26 +8,15 @@ import { useState } from "react"
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom"
 import AddProduct from "./component/AddProduct"
 import NavBarSupplier from "./component/NavBarSupplier"
+import ClientPage from "./component/ClientPage"
 
 function App() {
-    const [productCategorie, setProductCategorie] = useState("");
 
-    function ClientPage() {
-        return (
-            <>
-            <NavBar></NavBar>
-            <CategorieBar updateCategorie = {setProductCategorie}></CategorieBar>
-            <ProductList productCategorie = {productCategorie}></ProductList>
-            </>
-        )
-    }
-
+    // need to add support for supplier page
     function SupplierPage() {
         return (
             <>
             <NavBarSupplier></NavBarSupplier>
-            <CategorieBar updateCategorie = {setProductCategorie}></CategorieBar>
-            <ProductList productCategorie = {productCategorie}></ProductList>
             </>
         )
     }

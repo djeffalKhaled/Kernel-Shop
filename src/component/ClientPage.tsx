@@ -1,0 +1,29 @@
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import NavBar from "./NavBar";
+import CategorieBar from "./CategorieBar";
+import ProductList from "./ProductList";
+
+function ClientPage() {
+    const location = useLocation();
+    const [productCategory, setProductCategorie] = useState("Composants PC"); // default categ
+    const [productType, setProductType] = useState("");
+
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const urlCategory = params.get("category");
+        if (urlCategory) {
+            setProductCategorie(decodeURIComponent(urlCategory));
+        }
+    }, [location.search]);
+
+    return (
+        <>
+            <NavBar updateMainCateg={setProductCategorie} updateType={setProductType}></NavBar>
+            <CategorieBar category={productCategory} updateType={setProductType}></CategorieBar>
+            <ProductList productType={productType} productCategorie={productCategory}></ProductList>
+        </>
+    );
+}
+
+export default ClientPage
