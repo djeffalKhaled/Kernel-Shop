@@ -76,7 +76,7 @@
 
 .LanguagePopup {
   position: absolute;
-  top: 55px; /* below icon */
+  top: 55px; 
   right: -5px;
   width: 150px;
   background-color: white;
@@ -152,11 +152,11 @@
     object-fit: contain;
 }
 
-/* Cart Sidebar */
+
 .CartPanel {
   position: fixed;
   top: 0;
-  right: -400px; /* hidden by default */
+  right: -400px; 
   width: 350px;
   height: 100vh;
   background-color: #fff;
@@ -169,7 +169,7 @@
 }
 
 .CartPanel.open {
-  right: 0; /* slide in */
+  right: 0; 
 }
 
 .CartHeader {
@@ -191,7 +191,6 @@
   overflow-y: auto;
 }
 
-/* Dark overlay behind cart */
 .CartOverlay {
   position: fixed;
   top: 0;

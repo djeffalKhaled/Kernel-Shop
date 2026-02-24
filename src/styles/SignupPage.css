@@ -99,8 +99,8 @@ button:focus-visible {
 }
 
 .RoleSelect input[type="radio"] {
-  accent-color: #456882; /* nice blue */
-  transform: scale(1.2); /* bigger circle */
+  accent-color: #456882;
+  transform: scale(1.2);
   margin-right: 6px;
   cursor: pointer;
 }
@@ -124,10 +124,10 @@ button:focus-visible {
 }
 
 .FormTitle {
-  font-size: 36px;       /* ⬅️ bigger */
+  font-size: 36px;       
   font-weight: bold;
   text-align: center;
-  margin-bottom: 25px;   /* space under title */
+  margin-bottom: 25px;   
 }
 
 .FormContainer {

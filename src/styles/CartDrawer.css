@@ -1,4 +1,4 @@
-/* overlay */
+
 .CartOverlay{
   position: fixed;
   inset: 0;
@@ -14,7 +14,6 @@
   pointer-events: all;
 }
 
-/* drawer */
 .CartDrawer{
   position: fixed;
   top: 0;
@@ -33,7 +32,6 @@
   right: 0;
 }
 
-/* header */
 .CartHeader{
   display:flex;
   justify-content: space-between;
@@ -49,7 +47,6 @@
   cursor:pointer;
 }
 
-/* items */
 .CartItems{
   flex:1;
   overflow-y:auto;
@@ -94,7 +91,6 @@
   color:red;
 }
 
-/* footer */
 .CartFooter{
   border-top:1px solid #eee;
   padding:20px;

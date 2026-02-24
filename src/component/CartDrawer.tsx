@@ -15,10 +15,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   console.log("CART ITEMS:", cartItems);
   return (
     <>
-      {/* OVERLAY */}
       <div className={`CartOverlay ${isOpen ? "show" : ""}`} onClick={onClose}></div>
-
-      {/* DRAWER */}
       <div className={`CartDrawer ${isOpen ? "open" : ""}`}>
         
         <div className="CartHeader">
@@ -52,7 +49,6 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
           )}
         </div>
 
-        {/* FOOTER */}
         <div className="CartFooter">
           <div className="Subtotal">
             <span>Sous-total :</span>

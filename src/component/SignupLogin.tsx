@@ -141,7 +141,6 @@ function Signup({ onClose }: { onClose: () => void }) {
             />
           </div>
 
-          {/* user type */}
           <div className="RoleSelect">
             <label>
               <input
