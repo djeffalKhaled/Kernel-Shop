@@ -8,8 +8,11 @@ type CartDrawerProps = {
 };
 
 export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
-  const { cartItems, removeFromCart, totalPrice } = useContext(CartContext);
+  const context = useContext(CartContext);
+  if (!context) throw new Error("CartDrawer must be used inside CartProvider");
 
+  const { cartItems, removeFromCart, totalPrice } = context;
+  console.log("CART ITEMS:", cartItems);
   return (
     <>
       {/* OVERLAY */}
@@ -55,8 +58,6 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             <span>Sous-total :</span>
             <b>{totalPrice} DA</b>
           </div>
-
-          <button className="ViewCart">VOIR LE PANIER</button>
           <button className="Checkout">COMMANDER</button>
         </div>
 

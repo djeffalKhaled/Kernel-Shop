@@ -1,13 +1,12 @@
 import "./styles/App.css"
 import NavBar from './component/NavBar'
-import Signup from './component/SignupLogin'
-import Product from './component/Product'
 import CategorieBar from "./component/CategorieBar"
 import ProductList from "./component/ProductList"
 import { useState } from "react"
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom"
-import AddProduct from "./component/AddProduct"
 import NavBarSupplier from "./component/NavBarSupplier"
+import { CartProvider } from "./context/CartContext";
+
 
 function App() {
     const [productCategorie, setProductCategorie] = useState("");
@@ -47,4 +46,10 @@ function App() {
     )
 }
 
-export default App
+export default function AppWithProvider() {
+    return (
+        <CartProvider>
+            <App />
+        </CartProvider>
+    )
+}

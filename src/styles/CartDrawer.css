@@ -120,7 +120,7 @@
 .Checkout{
   width:100%;
   padding:14px;
-  background:#7b2c6f;
+  background:#4e7a97;
   color:white;
   border:none;
   border-radius:30px;
@@ -129,5 +129,5 @@
 }
 
 .Checkout:hover{
-  background:#68255d;
+  background:#2f9e9e;
 }
