@@ -2,6 +2,7 @@ import "./styles/App.css"
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom"
 import ClientPage from "./component/ClientPage"
 import SupplierPage from "./component/SupplierPage"
+import { CartProvider } from "./context/CartContext"
 
 function App() {
 
@@ -20,4 +21,10 @@ function App() {
     )
 }
 
-export default App
+export default function AppWithProvider() {
+    return (
+        <CartProvider>
+            <App />
+        </CartProvider>
+    )
+}

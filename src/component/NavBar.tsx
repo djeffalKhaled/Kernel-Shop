@@ -9,7 +9,7 @@ import languageIcon from "../icons/language.svg"
 import hamBurgMenu from "../icons/icon.svg"
 import { useState } from "react"
 import SignupLogin from "./SignupLogin"
-
+import CartDrawer from "./CartDrawer";
 
 // @ts-ignore
 function NavBar({updateMainCateg, updateType, updateSearch}) {

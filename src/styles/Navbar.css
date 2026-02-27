@@ -199,7 +199,6 @@
     overflow-y: auto;
 }
 
-/* Dark overlay behind cart */
 .CartOverlay {
     position: fixed;
     top: 0;
