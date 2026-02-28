@@ -200,3 +200,28 @@
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 1500;
 }
+
+.FloatingAddBtn {
+    position: fixed;        /* stays on screen */
+    bottom: 30px;           /* distance from bottom */
+    right: 30px;            /* distance from right */
+
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;     /* makes it a circle */
+
+    background-color: #FF8A76;
+    color: white;
+
+    font-size: 30px;
+    font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+
+    z-index: 1000; /* always on top */
+}

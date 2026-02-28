@@ -37,9 +37,6 @@ function NavBarSupplier() {
             </div>
 
             <div className = "BarButtons">
-                <button type = "button" onClick={showAddProductBtn}>
-                  Add Product
-                </button>
                 <img src = {shopingIcon}></img>
                 <img src = {languageIcon}></img>
                 <img src = {accountIcon} onClick={showSignup}></img>
@@ -55,6 +52,9 @@ function NavBarSupplier() {
             )}
 
             
+      </div>
+      <div className="FloatingAddBtn" onClick={showAddProductBtn}>
+         +
       </div>
     </>
   )

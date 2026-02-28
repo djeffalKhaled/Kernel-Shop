@@ -1,8 +1,19 @@
 .ProductList {
     display: flex;
-    flex-wrap: wrap; 
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    margin-bottom: 100px;
+    grid-template-columns: repeat(5,1fr);
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.ProductList > * {
+    flex: 0 0 calc(20% - 20px) !important; /* force 5 per row */
+    max-width: calc(20% - 20px) !important;
+}
+
+
+
+.ProductList .card,
+.ProductList > div {
+    padding: 10px !important;
 }

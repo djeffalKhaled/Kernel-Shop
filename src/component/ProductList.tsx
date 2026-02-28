@@ -60,6 +60,7 @@ function ProductList({productCategorie}) {
                     price={item.price}
                     />
                 ))}
+                
             </div>
             )
             }
