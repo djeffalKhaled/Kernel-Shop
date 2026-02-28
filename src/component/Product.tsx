@@ -17,7 +17,7 @@ function Product({productId, image, title, price} : ProductProps) {
     <>
       <div className = "ProductItem" id = {productId.toString()}>
         <div className = "ProductImageCont">
-            <img src={image} alt={title} className = "ProductImage"/>
+            <img className = "ProductImage" src={image} alt={title} />
         </div>
         
         <label htmlFor = "productimage" className = "ProductTitle">{title}</label>

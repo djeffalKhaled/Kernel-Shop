@@ -119,7 +119,8 @@ function ProductList({productType, productCategorie, productNameSearch}) {
             loading ? (<div className="Info">Chargement des produits...</div>) : 
             filteredProducts.length === 0 ? (<div className="Info">Aucun produit n'est actuellement disponible.</div>) : 
             (
-            <div className="ProductList">
+            <div className = "CenteredProductList">
+                <div className="ProductList">
                 {filteredProducts.map((item) => (
                     <Product 
                     productId={item.id} 
@@ -128,6 +129,8 @@ function ProductList({productType, productCategorie, productNameSearch}) {
                     price={item.price}
                     />
                 ))}
+                
+                </div>
             </div>
             )
             }

@@ -109,28 +109,25 @@ function NavBarSupplier({updateMainCateg, updateType, updateSearch}) {
                 </div>
             </div>
 
-            
-            {showSignupComp && (
-                <SignupLogin onClose={() => setShowSignup(false)} />
-            )}
-
-            <div className={`CartPanel ${isCartOpen ? "open" : ""}`}>
-                <div className="CartHeader">
-                    <h3>Mon Panier</h3>
-                    <button className="CloseBtn" onClick={() => setIsCartOpen(false)}>
-                        X
-                    </button>
-                </div>
-                <div className="CartContent">
-                    <p>Votre panier est vide.</p>
-                </div>
+            <div className = "BarButtons">
+                <img src = {shopingIcon}></img>
+                <img src = {languageIcon}></img>
+                <img src = {accountIcon} onClick={showSignup}></img>
             </div>
 
-            {isCartOpen && (
-                <div className="CartOverlay" onClick={() => setIsCartOpen(false)}></div>
+            {showSignupComp && (
+              <SignupLogin onClose={() => setShowSignup(false)} />
+            )
+            }
+
+            {showAddProduct && (
+              <AddProduct onClose={() => setShowAddProduct(false)}></AddProduct>
             )}
-        </>
-    );
+        <div className="FloatingAddBtn" onClick={showAddProductBtn}>
+            +
+        </div>
+    </>
+  )
 }
 
 export default NavBarSupplier;

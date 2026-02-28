@@ -1,7 +1,11 @@
+.CenteredProductList {
+    display: flex;
+    justify-content: center;
+}
+
 .ProductList {
     display: flex;
     flex-wrap: wrap; 
-    justify-content: center;
     align-items: center;
     margin-top: 20px;
     margin-bottom: 100px;
