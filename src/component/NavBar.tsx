@@ -9,7 +9,7 @@ import languageIcon from "../icons/language.svg"
 import hamBurgMenu from "../icons/icon.svg"
 import { useState } from "react"
 import SignupLogin from "./SignupLogin"
-import CartDrawer from "./CartDrawer";
+import CartDrawer from "../component/CartDrawer"
 
 // @ts-ignore
 function NavBar({updateMainCateg, updateType, updateSearch}) {
@@ -103,17 +103,7 @@ function NavBar({updateMainCateg, updateType, updateSearch}) {
                 <SignupLogin onClose={() => setShowSignup(false)} />
             )}
 
-            <div className={`CartPanel ${isCartOpen ? "open" : ""}`}>
-                <div className="CartHeader">
-                    <h3>Mon Panier</h3>
-                    <button className="CloseBtn" onClick={() => setIsCartOpen(false)}>
-                        X
-                    </button>
-                </div>
-                <div className="CartContent">
-                    <p>Votre panier est vide.</p>
-                </div>
-            </div>
+            <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)}/>
 
             {isCartOpen && (
                 <div className="CartOverlay" onClick={() => setIsCartOpen(false)}></div>
