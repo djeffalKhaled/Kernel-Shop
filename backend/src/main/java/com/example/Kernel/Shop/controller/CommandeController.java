@@ -1,6 +1,7 @@
 package com.example.Kernel.Shop.controller;
 
 import com.example.Kernel.Shop.entity.Commande;
+import com.example.Kernel.Shop.entity.Commande.Item;
 import com.example.Kernel.Shop.entity.Product;
 import com.example.Kernel.Shop.repository.CommandeRepository;
 import com.example.Kernel.Shop.repository.ProductRepository;
@@ -62,6 +63,19 @@ public class CommandeController {
         if (!commandeRepository.existsById(commandeId)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Commande not found");
         }
+        Optional<Commande> commande = commandeRepository.findById(commandeId);
+        List<Item> items = commande.get().getItems();
+
+        // reupdate stock back to its original value for all purchased items
+        for (Item item : items) {
+            String productId = item.getProductId();
+            Product product = productRepository.findById(productId)
+                           .orElseThrow(() -> new RuntimeException("Product not found"));
+            int stock = product.getStock();
+            product.setStock(stock + item.getQuantity());
+            productRepository.save(product);
+        }
+
         commandeRepository.deleteById(commandeId);
     }
 

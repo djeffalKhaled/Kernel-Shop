@@ -32,6 +32,35 @@ public class ProductController {
         return productRepo.save(product);
     }
 
+    @PutMapping
+    public Product updateProduct(@RequestBody Product product) {
+        if (product.getId() == null) {
+            throw new RuntimeException("Product ID must not be null for update");
+        }
+
+        return productRepo.save(product);
+    }
+
+    @GetMapping("/category/{categorie}")
+    public List<Product> getProductByCategorie(@PathVariable String categorie) {
+        List<Product> products = productRepo.findByCategorie(categorie);
+        if (products.isEmpty()) {
+            throw new RuntimeException("No products found for categorie " + categorie);
+        }
+
+        return products;
+    }
+
+    @GetMapping("/type/{type}")
+    public List<Product> getProductByType(@PathVariable String type) {
+        List<Product> products = productRepo.findByType(type);
+        if (products.isEmpty()) {
+            throw new RuntimeException("No products found for type " + type);
+        }
+
+        return products;
+    }
+
     @GetMapping("/{name}")
     public Product getProduct(@PathVariable String name) {
         return productRepo.findByName(name)

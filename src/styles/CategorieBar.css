@@ -33,3 +33,10 @@
     border-radius: 12px;
     cursor: pointer;
 }
+.List li:hover {
+    background-color: #e0e0e0;
+}
+.List li:active {
+    background-color: #dbdbdb;
+    transform: scale(0.98);
+}

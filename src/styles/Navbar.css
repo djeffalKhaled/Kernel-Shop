@@ -24,9 +24,10 @@
 .SearchInput {
     margin-left: 50px;
     display: flex;
-    width : 50%;
+    width: 50%;
     gap: 10px;
 }
+
 .SearchInput input {
     width: 100%;
     border-radius: 24px;
@@ -47,18 +48,188 @@
 
 .BarButtons {
     display: flex;
-    gap: 20px;
+    gap: 30px;
     margin-left: auto;
     margin-right: 50px;
 }
+
 .BarButtons button {
     background-color: #ECECEC;
     color: white;
     border-radius: 25px;
     color: #4B4D4E;
 }
+.HamburgerIcon {
+    width: 25px;
+}
 
-.BarButtons img {
-    width: 30px;
+.IconButton {
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.IconButton img {
+    width: 35px;
     cursor: pointer;
+}
+
+.IconButton:hover {
+    background: #f2f4f7;
+    transform: scale(1.05);
+}
+
+.LanguagePopup {
+    position: fixed;
+    top: 50px;
+    width: 150px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    z-index: 1;
+}
+
+.LanguageOption {
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+.LanguageOption:hover {
+    background-color: #f0f0f0;
+}
+.LanguageOption:active {
+    background-color: #e0e0e0;
+    transform: scale(0.98);
+}
+
+.FlagIcon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    object-fit: contain;
+}
+
+.CategoriesPopup {
+    position: fixed;
+    top: 58px;
+    width: 200px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    z-index: 1;
+    font-family: "Raleway";
+}
+.CategoryOption {
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+.CategoryOption:hover {
+    background-color: #f0f0f0;
+}
+.CategoryOption:active {
+    background-color: #e0e0e0;
+    transform: scale(0.98);
+}
+
+.CartWrapper {
+    position: relative;
+}
+
+.CartBadge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+
+/* Cart Sidebar */
+.CartPanel {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    /* hidden by default */
+    width: 350px;
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 2000;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.CartPanel.open {
+    right: 0;
+    /* slide in */
+}
+
+.CartHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.CloseBtn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.CartContent {
+    margin-top: 20px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.CartOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1500;
+}
+
+.FloatingAddBtn {
+    position: fixed;        /* stays on screen */
+    bottom: 30px;           /* distance from bottom */
+    right: 30px;            /* distance from right */
+
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;     /* makes it a circle */
+
+    background-color: #FF8A76;
+    color: white;
+
+    font-size: 30px;
+    font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+
+    z-index: 1000; /* always on top */
 }
