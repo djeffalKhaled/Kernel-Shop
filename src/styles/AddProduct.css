@@ -1,37 +1,130 @@
-.Background {
-    position: absolute;
-    background-color: #0000003b;
-    width: 100%;
-    height: 100vh;
-    margin: 0;
-    top: 0;
-    right: 0;
-    left: 0;
+.AddProduct {
+    display: flex;
+    margin-top: 30px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
 }
 
 .ProductForm {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    background-color: #ffffff;
+    width: 70%;
     color: black;
     padding: 50px;
     gap: 20px;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    font-family: "Radio Canada";
+    font-size: 20px;
 }
 
 .Info {
     text-align: center;
     margin-top: 50px;
-    font-family: "Radio Canada";
     background-color: #efefef;
     width : 30%;
     padding: 10px;
     border-radius: 40px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.ProductItem {
+    margin-left: auto;
+    margin-top: 60px;
+}
+
+.ImagePreview {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f3f3;
+    color: #888;
+}
+
+input {
+    border-radius: 10px;
+    background-color: rgb(239, 239, 239);
+    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+input:hover {
+    background-color: #e0e0e0;
+}
+input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.5);
+}
+
+textarea {
+    background-color: #ECECEC;
+    border-color: transparent;
+    height: 100px;
+    color: black;
+    border-radius: 10px;
+    font-family: "Radio Canada";
+    font-size: large;
+    padding: 10px;
+    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+textarea:hover {
+    background-color: #e0e0e0;
+}
+textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.5);
+}
+
+select {
+    background-color: #ECECEC;
+    border-color: transparent;
+    width: 100%;
+    height: 50px;
+    color: black;
+    border-radius: 10px;
+    font-family: "Radio Canada";
+    font-size: large;
+    padding: 10px;
+    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+select:hover {
+    background-color: #e0e0e0;
+}
+select:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.5);
+}
+
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px; 
+}
+
+.custom-select {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: none;
+    background: #e5e5e5;
+    color: #929292;
+    appearance: none;
+    cursor: pointer;
+}
+
+
+.HideInput {
+  display: none;
+}
+.ImageLabel {
+    display: flex;
+    padding: 15px 15px;
+    background-color: #ECECEC;
+    color:  #888888;
+    border-radius: 10px;
+    cursor: pointer;
 }

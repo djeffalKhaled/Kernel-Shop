@@ -40,19 +40,26 @@ public class SupplierController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> loginRequest) {
-        String email = loginRequest.get("email");
-        String password = loginRequest.get("password");
-
+    public ResponseEntity<?> login(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
+        String password = request.get("password");
         Supplier supplier = supplierRepository.findByEmail(email);
-
-        if (supplier != null && passwordEncoder.matches(password, supplier.getPassword())) {
-            String token = JwtUtil.generateToken(email);
-            return ResponseEntity.ok(Map.of("token", token));
+        
+        if (supplier == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+        if (!passwordEncoder.matches(password, supplier.getPassword())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Wrong password");
         }
 
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body(Map.of("error", "Email or password incorrect"));
+        String token = JwtUtil.generateToken(email);
+        Map<String, Object> responseBody = Map.of(
+            "token", token,
+            "id", supplier.getId(),
+            "username", supplier.getUsername() 
+        );
+
+        return ResponseEntity.ok(responseBody);
     }
 
 

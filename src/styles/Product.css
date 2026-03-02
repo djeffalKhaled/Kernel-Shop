@@ -1,18 +1,16 @@
 .ProductItem {
 	border-radius: 10px;
-	width: 300px;
-    height: 300px;
+	width: 250px;
+    height: 250px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-    gap: 10px;
 
 	background-color: white;
 	border: 1px solid #CECECE;
 	
     font-family: "Radio Canada";
     box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25);
-	margin: 15px;
 
     padding: 20px;
 }
@@ -27,8 +25,8 @@
 }
 
 .ProductImageCont {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,11 +40,6 @@
     object-fit: contain;
 }
 
-.Payment {
-    display: flex;
-    gap: 20px;
-}
-
 .Price {
     color: #FF8A76;
     font-weight: medium;
@@ -58,4 +51,5 @@
     color: #4B4D4E;
     font-size: medium;
     border-radius: 25px;
+    margin-top: 20px;
 }

@@ -19,6 +19,7 @@
     font-family: 'Consolas';
     font-size: 25px;
     margin-left: 50px;
+    cursor: pointer;
 }
 
 .SearchInput {

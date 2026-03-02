@@ -21,12 +21,8 @@ function Product({productId, image, title, price} : ProductProps) {
         </div>
         
         <label htmlFor = "productimage" className = "ProductTitle">{title}</label>
-        <div className = "Payment">
-            <div className = "Price">{price.toString()}</div>
-            <button
-  type="button"  className="ButtonCart" onClick={() =>{    console.log("Clicked!");    addToCart({id: productId, name: title,  price: price,  image: image,quantity: 1,});}}
->Ajouter au Panier</button>
-        </div>
+        <div className = "Price">{price.toString() + " DA"}</div>
+        <button type="button"  className="ButtonCart" onClick={() =>{console.log("Clicked!"); addToCart({id: productId, name: title,  price: price,  image: image,quantity: 1,});}}>Ajouter au Panier</button>
       </div>
     </>
   )

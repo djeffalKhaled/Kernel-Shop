@@ -12,7 +12,6 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   if (!context) throw new Error("CartDrawer must be used inside CartProvider");
 
   const { cartItems, removeFromCart, totalPrice } = context;
-  console.log("CART ITEMS:", cartItems);
   return (
     <>
       <div className={`CartOverlay ${isOpen ? "show" : ""}`} onClick={onClose}></div>

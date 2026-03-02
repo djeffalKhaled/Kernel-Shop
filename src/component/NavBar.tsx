@@ -7,18 +7,21 @@ import accountIcon from "../icons/account_circle.svg"
 import shopingIcon from "../icons/Shopping cart.svg"
 import languageIcon from "../icons/language.svg"
 import hamBurgMenu from "../icons/icon.svg"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import SignupLogin from "./SignupLogin"
 import CartDrawer from "../component/CartDrawer"
+import { useNavigate } from "react-router-dom"
+import { auth } from "../config/auth"
+import Account from "./Account"
 
 // @ts-ignore
 function NavBar({updateMainCateg, updateType, updateSearch}) {
+    const navigate = useNavigate();
     const [search, setSearch] = useState("");
     const [showSignupComp, setShowSignup] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
     const [showCategories, setShowCategories] = useState(false);
-    const toggleDropdown = () => {setShowDropdown(!showDropdown)};
-    const toggleCategories = () => {setShowCategories(!showCategories)};
+    const [showAccont, setShowAccount] = useState(false);
     const [language, setLanguage] = useState("Francais");
     const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -33,8 +36,12 @@ function NavBar({updateMainCateg, updateType, updateSearch}) {
         Arabic: algIcon,
     };
 
+    // Account mngmt
     function showSignup() {
         setShowSignup(!showSignupComp);
+    }
+    function showAccount() {
+        setShowAccount(!showAccont);
     }
 
     const handleCategories = (categ: string) => {
@@ -43,10 +50,15 @@ function NavBar({updateMainCateg, updateType, updateSearch}) {
         window.history.pushState(null, "", `/client/category/${encodeURIComponent(categ)}`);
     };
 
+    // suppliers only
+    function goToAddProductPage() {
+        navigate("/add-product");
+    }
+
     return (
         <>
             <div className="Bar">
-                <img className="Logo" src={kernelIcon} style={{ width: "124px" }} />
+                <img className="Logo" src={kernelIcon} onClick = {() => navigate("/home")} style={{ width: "124px"}} />
 
 
                 <div className="SearchInput">
@@ -71,6 +83,11 @@ function NavBar({updateMainCateg, updateType, updateSearch}) {
                             </div>
                         )}
                     </div>
+                    {auth.getUser().type === "suppliers" && auth.isLoggedIn() === true  && (
+                        <button type = "button" onClick={goToAddProductPage}>
+                        Modify 
+                        </button>
+                    )}
                 </div>
 
                 <div className = "BarButtons">
@@ -93,7 +110,11 @@ function NavBar({updateMainCateg, updateType, updateSearch}) {
                     </div>
 
                     <div className = "IconButton">
-                        <img src = {accountIcon} onClick = {showSignup} alt = "Account"></img>
+                        {auth.isLoggedIn() === false ? (
+                            <img src = {accountIcon} onClick = {showSignup} alt = "Account"></img>
+                        ) : (
+                            <img src = {accountIcon} onClick = {showAccount} alt = "Account"></img>
+                        )}
                     </div>
                 </div>
             </div>
@@ -103,10 +124,20 @@ function NavBar({updateMainCateg, updateType, updateSearch}) {
                 <SignupLogin onClose={() => setShowSignup(false)} />
             )}
 
+            {showAccont &&(
+                <Account onClose = {() => setShowAccount(false)}></Account>
+            )}
+
             <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)}/>
 
             {isCartOpen && (
                 <div className="CartOverlay" onClick={() => setIsCartOpen(false)}></div>
+            )}
+
+            {auth.getUser().type === "suppliers" && auth.isLoggedIn() === true  && (
+                <div className="FloatingAddBtn" onClick={goToAddProductPage}>
+                    +
+                </div>
             )}
         </>
     );

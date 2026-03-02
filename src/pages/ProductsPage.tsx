@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import NavBar from "./NavBar";
-import CategorieBar from "./CategorieBar";
-import ProductList from "./ProductList";
+import NavBar from "../component/NavBar";
+import CategorieBar from "../component/CategorieBar";
+import ProductList from "../component/ProductList";
 
 function ClientPage() {
     const location = useLocation();

@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import NavBar from "./NavBar";
-import CategorieBar from "./CategorieBar";
-import ProductList from "./ProductList";
-import NavBarSupplier from "./NavBarSupplier";
+import NavBar from "../component/NavBar";
+import CategorieBar from "../component/CategorieBar";
+import ProductList from "../component/ProductList";
 
-function SupplierPage() {
+function HomePage() {
     const location = useLocation();
-    const [productCategory, setProductCategorie] = useState("Composants PC"); // default categ
+    const [productCategory, setProductCategorie] = useState(""); // shows all products 
     const [productType, setProductType] = useState("");
     const [search, setSearch] = useState("");
     useEffect(() => {
@@ -20,11 +19,10 @@ function SupplierPage() {
 
     return (
         <>
-            <NavBarSupplier updateMainCateg={setProductCategorie} updateType={setProductType} updateSearch = {setSearch}></NavBarSupplier>
-            <CategorieBar category={productCategory} updateType={setProductType}></CategorieBar>
+            <NavBar updateMainCateg={setProductCategorie} updateType={setProductType} updateSearch = {setSearch}></NavBar>
             <ProductList productType={productType} productCategorie={productCategory} productNameSearch = {search} ></ProductList>
         </>
     );
 }
 
-export default SupplierPage
+export default HomePage

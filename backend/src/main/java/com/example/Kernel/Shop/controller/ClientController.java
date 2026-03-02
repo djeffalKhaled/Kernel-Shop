@@ -68,7 +68,13 @@ public class ClientController {
 
         String token = JwtUtil.generateToken(email);
 
-        return ResponseEntity.ok(Map.of("token", token));
+        Map<String, Object> responseBody = Map.of(
+            "token", token,
+            "id", client.getId(),
+            "username", client.getUsername() 
+        );
+
+        return ResponseEntity.ok(responseBody);
     }
 
     @GetMapping
