@@ -12,6 +12,7 @@ type CartContextType = {
   cartItems: Product[];
   addToCart: (product: Product) => void;
   removeFromCart: (id: number) => void;
+  clearCart: () => void;
   totalPrice: number;
 };
 
@@ -42,6 +43,10 @@ export const CartProvider = ({ children }: Props) => {
     console.log("Current Cart Item : ", cartItems);
   };
 
+  const clearCart = () => {
+    setCartItems([]);
+ };
+
   const removeFromCart = (id: number) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
@@ -53,7 +58,7 @@ export const CartProvider = ({ children }: Props) => {
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, totalPrice }}
+      value={{ cartItems, addToCart, removeFromCart, clearCart, totalPrice }}
     >
       {children}
     </CartContext.Provider>

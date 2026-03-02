@@ -1,8 +1,37 @@
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px; 
+}
+
+.custom-select {
+  width: 100%;
+  padding: 15px 20px;
+  border-radius: 8px;
+  border: none;
+  background: #e5e5e5;
+  font-size: 16px;
+  color: #555;
+  margin-top: 0px;
+  border-inline: 4px solid transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
 .Background {
-    position: absolute;
+    position: fixed;
     background-color: #0000003b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100vh;
+    padding: 15px;
+    z-index: 1000;
     margin: 0;
     top: 0;
     right: 0;
@@ -14,11 +43,12 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 400px;
+    width: 500px;
+    height: 410px;
     background-color: #ffffff;
     color: black;
-    padding: 50px;
-    gap: 20px;
+    padding: 30px;
+    gap: 10px;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -34,4 +64,23 @@
     border-radius: 40px;
     margin-left: auto;
     margin-right: auto;
+}
+
+textarea.input {
+  width: 100%;
+  min-height: 90px;
+  padding: 15px 20px;
+
+  border-radius: 10px;
+  border: none;
+  background: #e5e5e5;
+  color: #555;
+  font-size: 16px;
+  resize: none;
+  box-sizing: border-box;
+}
+
+/* placeholder color */
+textarea.input::placeholder {
+  color: #999;
 }

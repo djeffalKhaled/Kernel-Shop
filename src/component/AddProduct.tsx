@@ -11,7 +11,26 @@ function AddProduct({onClose}) {
     const [price, setPrice] = useState<number | "">("");
     const [stock, setStock] = useState<number | "">("");
     const [imageFile, setImageFile] = useState<File | null>(null);
+    const categories = {
+    "composants-pc": [
+        "cpu",
+        "ram",
+        "gpu",
+        "carte-mère",
+        "boitiers",
+        "alimentation",
+        "stockage",
+        "refroidissement",
+    ],
+    console: ["playstation", "nintendo", "xbox"],
+    Moniteurs : ["1080p", "1440p", "4k", "ultrawide"],
+    "Accessoires-Gaming" : ["Manettes", "casque", "chaises-gaming"],
+    "Périphériques-Pc" : ["claviers", "souris", "Webcams", "Microphones"],
+    Reseaux : ["Routeurs", "Switchs", "Cartes-Réseau"],
+};
 
+    const [category, setCategory] = useState("");
+    const [type, setType] = useState("");
     /* im using a cloud hosting service for images, its cloudinary, you gotta set it up so that images are correctly saved!
     to set it up right just follow these steps (its ez) :
         - make a cloudinary account https://cloudinary.com/
@@ -69,12 +88,16 @@ function AddProduct({onClose}) {
                     description: description,
                     price: price,
                     stock: stock,
-                    imageUrl: imageUrl
+                    imageUrl: imageUrl,
+                    categorie: category,
+                    type: type
+                    
                 })
             })
-
+            
             const data = await response.json();
             console.log("Product added to database:", data);
+            alert("Produit ajouté avec succès ! ✅");
         } catch (error : any) {
             console.error(error.message);
         }
@@ -84,27 +107,43 @@ function AddProduct({onClose}) {
     return (
         <>
         <div className = "Background">
-        <div className = "ProductForm">
-            Add New Product :
-            <label htmlFor="productImage">Image:</label>
-            <input onChange = {(x) => setImageFile(x.target.files?.[0] ?? null)} type="file" id="productImage" name="productImage" accept="image/*" />
+            <div className = "ProductForm">
+                <h2 style={{ textAlign: "center" }}>Nv Produit : </h2>
+                <div className="form-row"> 
+                    <input type="text" className="input" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+                    <input type="text" className="input" placeholder="Prix" value={price} onChange={(e) => setPrice(Number(e.target.value))} />
+                </div>
+                <div className="form-row">
+                    <div className="select-wrapper">
+                        <select className="custom-select" value={category}  onChange={(e) => {setCategory(e.target.value); setType("");}} >
+                            <option value="">Categorie</option>
+                            {Object.keys(categories).map((cat) => (
+                            <option key={cat} value={cat}>{cat}</option>))}
+                        </select>
+                    </div>
 
-            <label htmlFor="productName">Name:</label>
-            <input onChange = {(x) => setName(x.target.value)} type="text" id="productName" name="productName" />
+                    <div className="select-wrapper">
+                        <select className="custom-select" value={type} onChange={(e) => setType(e.target.value)} disabled={!category}>
+                            <option value="">Type</option>
+                            {category && categories[category as keyof typeof categories].map((t) => (<option key={t} value={t}>{t}</option> ))}
+                        </select>
+                    </div>
+                </div>
 
-            <label htmlFor="productDescription">Description:</label>
-            <textarea onChange = {(x) => setDescription(x.target.value)} id="productDescription" name="productDescription" />
-
-            <label htmlFor="productPrice">Price:</label>
-            <input onChange = {(x) => setPrice(Number(x.target.value))} type="number" id="productPrice" name="productPrice" />
-
-            <label htmlFor="productStock">Stock:</label>
-            <input onChange = {(x) => setStock(Number(x.target.value))} type="number" id="productStock" name="productStock" />
-
-            <button onClick = {addProduct} type="button">Add Product</button>
-            <button type = "button" onClick={onClose}>Exit</button>
-        </div> 
+                <div className="form-row">
+                    <input className="input"type="number" placeholder="Stock" onChange={(e) => setStock(Number(e.target.value))}/>
+                </div>    
+                    <input className="input" type="file" accept="image/*" onChange={(e) => setImageFile(e.target.files?.[0] ?? null)}/>
+                
+                <textarea className="input" placeholder="Description" onChange={(e) => setDescription(e.target.value)}/>
+                <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>    
+                    <button onClick={addProduct} className="login-button">
+                     ajouter Produit
+                    </button>
+                </div>
+            </div>
         </div>
+        
         </>  
     )
 }

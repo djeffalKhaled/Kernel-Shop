@@ -7,12 +7,46 @@ type CartDrawerProps = {
   onClose: () => void;
 };
 
+
+
 export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const context = useContext(CartContext);
   if (!context) throw new Error("CartDrawer must be used inside CartProvider");
 
-  const { cartItems, removeFromCart, totalPrice } = context;
+  const { cartItems, removeFromCart,clearCart , totalPrice } = context;
   console.log("CART ITEMS:", cartItems);
+
+  const handleCheckout = async () => {
+  try {
+    const response = await fetch("http://localhost:8080/api/commandes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        clientId: "123", // later replace with real logged user
+        items: cartItems.map(item => ({
+          productId: item.id,
+          quantity: item.quantity,
+          price: item.price
+        }))
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Erreur lors de la commande");
+    }
+
+    const data = await response.json();
+    console.log("Commande créée :", data);
+
+    alert("Commande envoyée avec succès !");
+    clearCart();
+  } catch (error) {
+    console.error(error);
+    alert("Erreur serveur !");
+  }
+};
   return (
     <>
       <div className={`CartOverlay ${isOpen ? "show" : ""}`} onClick={onClose}></div>
@@ -54,7 +88,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             <span>Sous-total :</span>
             <b>{totalPrice} DA</b>
           </div>
-          <button className="Checkout">COMMANDER</button>
+          <button className="Checkout" onClick={handleCheckout}>COMMANDER</button>
         </div>
 
       </div>

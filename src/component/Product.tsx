@@ -15,7 +15,7 @@ function Product({productId, image, title, price} : ProductProps) {
   
   return (
     <>
-      <div className = "ProductItem" id = {productId.toString()}>
+      <div className = "ProductItem" id = {productId.toString()} onClick={() => navigate(`/product/${productId}`)} >
         <div className = "ProductImageCont">
             <img className = "ProductImage" src={image} alt={title} />
         </div>
@@ -23,9 +23,7 @@ function Product({productId, image, title, price} : ProductProps) {
         <label htmlFor = "productimage" className = "ProductTitle">{title}</label>
         <div className = "Payment">
             <div className = "Price">{price.toString()}</div>
-            <button
-  type="button"  className="ButtonCart" onClick={() =>{    console.log("Clicked!");    addToCart({id: productId, name: title,  price: price,  image: image,quantity: 1,});}}
->Ajouter au Panier</button>
+            <button type="button"  className="ButtonCart" onClick={(e) =>{ e.stopPropagation(); console.log("Clicked!");    addToCart({id: productId, name: title,  price: price,  image: image,quantity: 1,}); alert("Produit ajouté au panier ✅");}}>Ajouter au Panier</button>
         </div>
       </div>
     </>

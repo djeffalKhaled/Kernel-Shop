@@ -82,9 +82,6 @@ function NavBarSupplier({updateMainCateg, updateType, updateSearch}) {
                 </div>
 
                 <div className = "BarButtons">
-                    <button type = "button" onClick={showAddProductBtn}>
-                      Add Product
-                    </button>
                     <div className = "IconButton">
                         <img src = {shopingIcon} onClick = {() => setIsCartOpen(true)} alt = "Cart"></img>
                     </div>
