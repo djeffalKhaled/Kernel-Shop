@@ -1,16 +1,19 @@
 import { useState } from "react";
 import "../styles/AddProduct.css"
+import "../styles/Product.css"
 const PORT_URL = import.meta.env.VITE_PORT_URL;
-const  CLOUDINARY_URL = import.meta.env.VITE_CLOUDINARY_URL;
+const CLOUDINARY_URL = import.meta.env.VITE_CLOUDINARY_URL;
+import { categorytypes } from "../config/categorytypes"
 // comp where a supplier can add their products
 
 // @ts-ignore
-function AddProduct({onClose}) {
+function AddProduct() {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
-    const [price, setPrice] = useState<number | "">("");
-    const [stock, setStock] = useState<number | "">("");
+    const [price, setPrice] = useState("");
+    const [stock, setStock] = useState("");
     const [imageFile, setImageFile] = useState<File | null>(null);
+    const [previewUrl, setPreviewUrl] = useState("");
 
     /* im using a cloud hosting service for images, its cloudinary, you gotta set it up so that images are correctly saved!
     to set it up right just follow these steps (its ez) :
@@ -26,12 +29,12 @@ function AddProduct({onClose}) {
         - copy it and go to .env, paste it where I wrote <PUT_YOUR_API_HERE>
         - enjoy
     */
-    async function uploadToCloudinary(file : any) {
+    async function uploadToCloudinary(file: any) {
         const formData = new FormData();
         formData.append("file", file);
         formData.append("upload_preset", "productimages");
         formData.append("folder", "samples");
-        
+
         const response = await fetch(CLOUDINARY_URL, {
             method: "POST",
             body: formData,
@@ -39,7 +42,7 @@ function AddProduct({onClose}) {
 
         const data = await response.json();
         // this is the exact url for the image, retreived from cloudinary's api
-        return data.secure_url; 
+        return data.secure_url;
     }
 
     async function addProduct() {
@@ -52,10 +55,10 @@ function AddProduct({onClose}) {
             if (imageFile) {
                 imageUrl = await uploadToCloudinary(imageFile);
             }
-        } catch (error : any) {
+        } catch (error: any) {
             alert("CLOUDINARY ERROR (" + error + ") - CANNOT STORE IMAGE! : Either API key isn't set up right or cloudinary isn't working at the moment...")
         }
-        
+
         // main post req
         try {
             const response = await fetch(url, {
@@ -67,45 +70,99 @@ function AddProduct({onClose}) {
                 body: JSON.stringify({
                     name: name,
                     description: description,
-                    price: price,
-                    stock: stock,
+                    price: Number(price),
+                    stock: Number(stock),
                     imageUrl: imageUrl
                 })
             })
 
             const data = await response.json();
             console.log("Product added to database:", data);
-        } catch (error : any) {
+            alert("Product Added!");
+        } catch (error: any) {
             console.error(error.message);
         }
     }
 
-    
+    function updateImageInput(image: any) {
+        const file = image.target.files?.[0] ?? null;
+        setImageFile(file);
+        if (file) {
+            const objectUrl = URL.createObjectURL(file);
+            setPreviewUrl(objectUrl);
+        } else {
+            setPreviewUrl("");
+        }
+    }
+
+
+    const [selectedCategory, setSelectedCategory] = useState<string>("");
+    const [selectedSubcategory, setSelectedSubcategory] = useState<string>("");
+
+    const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedCategory(e.target.value);
+        setSelectedSubcategory(""); // reset subcategory when category changes
+    };
+
+
     return (
-        <>
-        <div className = "Background">
-        <div className = "ProductForm">
-            Add New Product :
-            <label htmlFor="productImage">Image:</label>
-            <input onChange = {(x) => setImageFile(x.target.files?.[0] ?? null)} type="file" id="productImage" name="productImage" accept="image/*" />
+        <div className="AddProduct">
+            <div className="ProductForm">
+                <div className = "form-row">
+                    <input type="text" className="input" placeholder="Nom" value={name} onChange={(e) => setName(e.target.value)} />
+                    <div className="ImageInput">
+                        <label htmlFor="productImage" className="ImageLabel">
+                            {imageFile ? imageFile.name : "Upload Image"} 
+                        </label>
+                        <input type="file" id="productImage" name="productImage" accept="image/*" onChange={(x) => updateImageInput(x)} className="HideInput"/>
+                    </div>
+                </div>
 
-            <label htmlFor="productName">Name:</label>
-            <input onChange = {(x) => setName(x.target.value)} type="text" id="productName" name="productName" />
+                <textarea className="input" placeholder="Description" onChange={(e) => setDescription(e.target.value)}/>
 
-            <label htmlFor="productDescription">Description:</label>
-            <textarea onChange = {(x) => setDescription(x.target.value)} id="productDescription" name="productDescription" />
+                <div className="form-row"> 
+                    <input className="input" type="number" placeholder="Stock" onChange={(e) => setStock(e.target.value)}/>
+                    <input type="text" className="input" placeholder="Prix" value={price} onChange={(e) => setPrice(e.target.value)} />
+                </div>
 
-            <label htmlFor="productPrice">Price:</label>
-            <input onChange = {(x) => setPrice(Number(x.target.value))} type="number" id="productPrice" name="productPrice" />
+                <div className="form-row">
+                    <select className = "custom-select" value={selectedCategory} onChange={handleCategoryChange}>
+                        <option value="">Selectionner une Catégorie</option>
+                        {Object.keys(categorytypes).map((category) => (
+                            <option key={category} value={category}>{category}</option>
+                        ))}
+                    </select>
+                    <select className = "custom-select" value={selectedSubcategory} onChange={(e) => setSelectedSubcategory(e.target.value)} disabled={!selectedCategory}>
+                        <option value="">Selectionner une type</option>
+                        {selectedCategory && categorytypes[selectedCategory].map((sub) => (
+                            <option key={sub} value={sub}>{sub}</option>
+                        ))}
+                    </select>
+                </div>
 
-            <label htmlFor="productStock">Stock:</label>
-            <input onChange = {(x) => setStock(Number(x.target.value))} type="number" id="productStock" name="productStock" />
+                <button onClick={addProduct} type="button">Add Product</button>
+            </div>
 
-            <button onClick = {addProduct} type="button">Add Product</button>
-            <button type = "button" onClick={onClose}>Exit</button>
-        </div> 
+            <div className="ProductItem">
+                <div className="ProductImageCont">
+                    {previewUrl ? (
+                        <img className="ProductImage" src={previewUrl} alt={name} />
+                    ) : (
+                        <div className="ImagePreview">No Image</div>
+                    )}
+                </div>
+                <label className="ProductTitle">
+                    {name || "Product Name Preview"}
+                </label>
+
+                <div className="Payment">
+                    <div className="Price">
+                        {price !== "" ? price + " DA" : "0 DA"}
+                    </div>
+                    <button type="button" className="ButtonCart">Ajouter au Panier</button>
+                </div>
+            </div>
         </div>
-        </>  
     )
 }
 

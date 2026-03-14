@@ -1,22 +1,12 @@
 .FormBackground {
-    position: absolute;
+    position: fixed;
     background-color: #0000003b;
     inset: 0;
+    animation: fadeIn 0.3s ease-in-out;
 }
-
-.Form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    width: 700px;              
-    height: 500px;
-    display: flex;             
-
-    background-color: white;
-    border-radius: 20px;
-    overflow: hidden;         
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .FormLeft {
@@ -39,6 +29,7 @@
     border-top-left-radius: 100px;
     border-bottom-left-radius: 100px;
     transition: all 0.5s ease;
+    padding: 10px;
 }
 
 .InputVal {
@@ -63,90 +54,93 @@ input {
 
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: 'Arial';
-  background-color: #456882;
-  cursor: pointer;
-  transition: border-color 0.25s;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: 'Arial';
+    background-color: #2d2d2d;
+    cursor: pointer;
+    transition: border-color 0.25s;
 }
+
 button:hover {
-  border-color: #ffffff;
+    border-color: #ffffff;
 }
+
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focu-color;
+    outline: 4px auto -webkit-focu-color;
 }
 
 .SignupButton {
-    margin-top: 25px;  
+    margin-top: 25px;
 
 }
 
 
 .RoleSelect {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 10px;
+    display: flex;
+    gap: 20px;
+    margin-bottom: 10px;
 }
 
 .RoleSelect input[type="radio"] {
-  accent-color: #456882;
-  transform: scale(1.2);
-  margin-right: 6px;
-  cursor: pointer;
+    accent-color: #456882;
+    transform: scale(1.2);
+    margin-right: 6px;
+    cursor: pointer;
 }
 
 .RoleSelect label {
-  margin-top: 25px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
 
 .CloseX {
-  position: absolute;
-  top: 5px;
-  right: 1px;
-  font-size: 40px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: white;
+    position: absolute;
+    top: 5px;
+    right: 1px;
+    font-size: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
 }
 
 .FormTitle {
-  font-size: 36px;       
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 25px;   
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 25px;
 }
 
 .FormContainer {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 800px;
-  height: 500px;
-  display: flex;
-  overflow: hidden;
-  border-radius: 12px;
-  background: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 80%;
+    display: flex;
+    overflow: hidden;
+    border-radius: 12px;
+    background: white;
 }
 
 .register-mode .FormLeft {
-  transform: translateX(100%);
+    transform: translateX(100%);
 }
 
 .register-mode .FormRight {
-  transform: translateX(-100%);
-  border-radius: 0 150px 150px 0;
+    transform: translateX(-100%);
+    border-radius: 0 150px 150px 0;
 }
 
-.FormLeft, .FormRight {
-  will-change: transform;
+.FormLeft,
+.FormRight {
+    will-change: transform;
 }

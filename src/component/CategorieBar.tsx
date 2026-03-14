@@ -21,7 +21,6 @@ function CategorieBar({category, updateType}) {
 
     // gets all the exact subcategories within the maincateg (i suck at naming things wth)
     const types = categorytypes[category] || [];
-
     return (
     <div className="CategorieBar">
         <div className="Title">{"> " + category.toUpperCase()}</div>
