@@ -12,6 +12,7 @@ type CartContextType = {
   cartItems: Product[];
   addToCart: (product: Product) => void;
   removeFromCart: (id: number) => void;
+  clearCart: () => void;
   totalPrice: number;
 };
 
@@ -23,6 +24,8 @@ type Props = {
 
 export const CartProvider = ({ children }: Props) => {
   const [cartItems, setCartItems] = useState<Product[]>([]);
+
+  const clearCart = () => { setCartItems([]);};
 
   const addToCart = (product: Product) => {
     console.log("ADD TO CART:", product);
@@ -53,7 +56,7 @@ export const CartProvider = ({ children }: Props) => {
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, totalPrice }}
+      value={{ cartItems, addToCart, removeFromCart, clearCart, totalPrice }}
     >
       {children}
     </CartContext.Provider>

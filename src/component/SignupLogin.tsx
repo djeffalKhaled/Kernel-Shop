@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../styles/SignupPage.css";
+import { createPortal } from "react-dom";
 
 function Signup({ onClose }: { onClose: () => void }) {
     const [isRegister, setIsRegister] = useState(false);
@@ -84,7 +85,7 @@ function Signup({ onClose }: { onClose: () => void }) {
         }
     };
 
-    return (
+    return createPortal(
         <div className="FormBackground" onClick={onClose}>
             <div
                 className={`FormContainer ${isRegister ? "register-mode" : ""}`}
@@ -179,7 +180,7 @@ function Signup({ onClose }: { onClose: () => void }) {
 
                 <div className="FormRight">
                     <h2>Welcome, Friend!</h2>
-                    <p>
+                    <p className="FormRightText" style={{ marginBottom: "20px" }}>
                         Register with your personal details to use all features
                     </p>
 
@@ -188,7 +189,8 @@ function Signup({ onClose }: { onClose: () => void }) {
                     </button>
                 </div>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 }
 

@@ -4,21 +4,24 @@ import ClientPage from "./pages/ProductsPage"
 import { CartProvider } from "./context/CartContext"
 import AddProductPage from "./pages/AddProductPage"
 import HomePage from "./pages/HomePage"
+import ProductPage from "./pages/ProductPage"
+import Footer from "./component/Footer"
 
 function App() {
 
     return (
         <BrowserRouter>
         <nav>
-            <Link to="/products">Products Page</Link> |{" "}
             <Link to="/home">Home Page</Link> |{" "}
         </nav>
 
         <Routes>
-            <Route path = "/products" element = {<ClientPage></ClientPage>}></Route>
             <Route path = "/home" element = {<HomePage></HomePage>}></Route>
             <Route path = "/add-product" element = {<AddProductPage></AddProductPage>}></Route>
+            <Route path="/product/:id" element={<ProductPage />} />
         </Routes>
+
+        <Footer />
         </BrowserRouter>
     )
 }

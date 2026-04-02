@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../styles/AddProduct.css"
 import "../styles/Product.css"
 const PORT_URL = import.meta.env.VITE_PORT_URL;
@@ -14,6 +14,10 @@ function AddProduct() {
     const [stock, setStock] = useState("");
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState("");
+    const [selectedCategory, setSelectedCategory] = useState<string>("");
+    const [selectedSubcategory, setSelectedSubcategory] = useState<string>("");
+
+
 
     /* im using a cloud hosting service for images, its cloudinary, you gotta set it up so that images are correctly saved!
     to set it up right just follow these steps (its ez) :
@@ -87,82 +91,73 @@ function AddProduct() {
     function updateImageInput(image: any) {
         const file = image.target.files?.[0] ?? null;
         setImageFile(file);
-        if (file) {
-            const objectUrl = URL.createObjectURL(file);
-            setPreviewUrl(objectUrl);
-        } else {
-            setPreviewUrl("");
-        }
+        setPreviewUrl(file ? URL.createObjectURL(file) : "");
     }
-
-
-    const [selectedCategory, setSelectedCategory] = useState<string>("");
-    const [selectedSubcategory, setSelectedSubcategory] = useState<string>("");
 
     const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedCategory(e.target.value);
-        setSelectedSubcategory(""); // reset subcategory when category changes
+        setSelectedSubcategory("");
     };
 
-
     return (
-        <div className="AddProduct">
-            <div className="ProductForm">
-                <div className = "form-row">
-                    <input type="text" className="input" placeholder="Nom" value={name} onChange={(e) => setName(e.target.value)} />
-                    <div className="ImageInput">
-                        <label htmlFor="productImage" className="ImageLabel">
-                            {imageFile ? imageFile.name : "Upload Image"} 
-                        </label>
-                        <input type="file" id="productImage" name="productImage" accept="image/*" onChange={(x) => updateImageInput(x)} className="HideInput"/>
+    
+            <div className="AddProduct">
+                <div className="ProductForm">
+                    <div className = "form-row">
+                        <input type="text" className="input" placeholder="Nom" value={name} onChange={(e) => setName(e.target.value)} />
+                        <div className="ImageInput">
+                            <label htmlFor="productImage" className="ImageLabel">
+                                {imageFile ? imageFile.name : "Upload Image"} 
+                            </label>
+                            <input type="file" id="productImage" name="productImage" accept="image/*" onChange={(x) => updateImageInput(x)} className="HideInput"/>
+                        </div>
+                    </div>
+
+                    <textarea className="input" placeholder="Description" onChange={(e) => setDescription(e.target.value)}/>
+
+                    <div className="form-row"> 
+                        <input className="input" type="number" placeholder="Stock" onChange={(e) => setStock(e.target.value)}/>
+                        <input type="text" className="input" placeholder="Prix" value={price} onChange={(e) => setPrice(e.target.value)} />
+                    </div>
+
+                    <div className="form-row">
+                        <select className = "custom-select" value={selectedCategory} onChange={handleCategoryChange}>
+                            <option value="">Selectionner une Catégorie</option>
+                            {Object.keys(categorytypes).map((category) => (
+                                <option key={category} value={category}>{category}</option>
+                            ))}
+                        </select>
+                        <select className = "custom-select" value={selectedSubcategory} onChange={(e) => setSelectedSubcategory(e.target.value)} disabled={!selectedCategory}>
+                            <option value="">Selectionner une type</option>
+                            {selectedCategory && categorytypes[selectedCategory].map((sub) => (
+                                <option key={sub} value={sub}>{sub}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <button onClick={addProduct} type="button">Add Product</button>
+                </div>
+                
+                <div className="ProductItem">
+                    <div className="ProductImageCont">
+                        {previewUrl ? (
+                            <img className="ProductImage" src={previewUrl} alt={name} />
+                        ) : (
+                            <div className="ImagePreview">No Image</div>
+                        )}
+                    </div>
+                    <label className="ProductTitle">
+                        {name || "Product Name Preview"}
+                    </label>
+
+                    <div className="Payment">
+                        <div className="Price">
+                            {price !== "" ? price + " DA" : "0 DA"}
+                        </div>
+                        <button type="button" className="ButtonCart">Ajouter au Panier</button>
                     </div>
                 </div>
-
-                <textarea className="input" placeholder="Description" onChange={(e) => setDescription(e.target.value)}/>
-
-                <div className="form-row"> 
-                    <input className="input" type="number" placeholder="Stock" onChange={(e) => setStock(e.target.value)}/>
-                    <input type="text" className="input" placeholder="Prix" value={price} onChange={(e) => setPrice(e.target.value)} />
-                </div>
-
-                <div className="form-row">
-                    <select className = "custom-select" value={selectedCategory} onChange={handleCategoryChange}>
-                        <option value="">Selectionner une Catégorie</option>
-                        {Object.keys(categorytypes).map((category) => (
-                            <option key={category} value={category}>{category}</option>
-                        ))}
-                    </select>
-                    <select className = "custom-select" value={selectedSubcategory} onChange={(e) => setSelectedSubcategory(e.target.value)} disabled={!selectedCategory}>
-                        <option value="">Selectionner une type</option>
-                        {selectedCategory && categorytypes[selectedCategory].map((sub) => (
-                            <option key={sub} value={sub}>{sub}</option>
-                        ))}
-                    </select>
-                </div>
-
-                <button onClick={addProduct} type="button">Add Product</button>
-            </div>
-
-            <div className="ProductItem">
-                <div className="ProductImageCont">
-                    {previewUrl ? (
-                        <img className="ProductImage" src={previewUrl} alt={name} />
-                    ) : (
-                        <div className="ImagePreview">No Image</div>
-                    )}
-                </div>
-                <label className="ProductTitle">
-                    {name || "Product Name Preview"}
-                </label>
-
-                <div className="Payment">
-                    <div className="Price">
-                        {price !== "" ? price + " DA" : "0 DA"}
-                    </div>
-                    <button type="button" className="ButtonCart">Ajouter au Panier</button>
-                </div>
-            </div>
-        </div>
+            </div>        
     )
 }
 

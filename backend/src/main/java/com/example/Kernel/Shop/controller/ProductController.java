@@ -1,14 +1,20 @@
 package com.example.Kernel.Shop.controller;
 
-import com.example.Kernel.Shop.entity.Product;
-import com.example.Kernel.Shop.repository.ProductRepository;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
+import com.example.Kernel.Shop.entity.Product;
+import com.example.Kernel.Shop.repository.ProductRepository;
 
 
 @RestController
@@ -31,7 +37,7 @@ public class ProductController {
     public Product addProduct(@RequestBody Product product) {
         return productRepo.save(product);
     }
-
+/*
     @PutMapping
     public Product updateProduct(@RequestBody Product product) {
         if (product.getId() == null) {
@@ -39,6 +45,13 @@ public class ProductController {
         }
 
         return productRepo.save(product);
+    }
+ */
+
+    @GetMapping("/{id}")
+    public Product getProductById(@PathVariable String id) {
+        return productRepo.findById(id)
+            .orElseThrow(() -> new RuntimeException("Product not found"));
     }
 
     @GetMapping("/category/{categorie}")
@@ -60,31 +73,33 @@ public class ProductController {
 
         return products;
     }
-
+/*
     @GetMapping("/{name}")
     public Product getProduct(@PathVariable String name) {
         return productRepo.findByName(name)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
     }
+ */
+    @PutMapping("/{id}")
+    public Product updateProduct(@PathVariable String id,@RequestBody Product updatedProduct) {
 
-    @PutMapping("/{name}")
-    public Product updateProduct(@PathVariable String name,@RequestBody Product updatedProduct) {
-
-        Product product = productRepo.findByName(name).orElseThrow(() -> new RuntimeException("Product not found"));
+        Product product = productRepo.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
 
         product.setName(updatedProduct.getName());
         product.setDescription(updatedProduct.getDescription());
         product.setPrice(updatedProduct.getPrice());
         product.setStock(updatedProduct.getStock());
         product.setImageUrl(updatedProduct.getImageUrl());
+        product.setCategorie(updatedProduct.getCategorie());
+        product.setType(updatedProduct.getType());
 
         return productRepo.save(product);
     }
 
-    @DeleteMapping("/{name}")
-    public void deleteProduct(@PathVariable String name) {
-        Product product = productRepo.findByName(name).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
-        productRepo.deleteByName(name);
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable String id) {
+        Product product = productRepo.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
+        productRepo.deleteById(id);
     }
 
 }

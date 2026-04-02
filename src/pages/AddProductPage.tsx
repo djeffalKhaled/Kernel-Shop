@@ -4,7 +4,7 @@ import { useState } from "react";
 import NavBar from "../component/NavBar";
 
 function AddProductPage() {
-    const [productCategory, setProductCategorie] = useState("Composants PC"); // default categ
+    const [productCategory, setProductCategorie] = useState("Composants PC"); 
     const [productType, setProductType] = useState("");
     const [search, setSearch] = useState("");
 

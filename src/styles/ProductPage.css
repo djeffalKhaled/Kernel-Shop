@@ -1,0 +1,433 @@
+
+
+.PDPage {
+    margin-top: 80px; 
+    padding: 30px 60px;
+    font-family: "Radio Canada", sans-serif;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.PDLoading {
+    margin-top: 120px;
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+    font-family: "Radio Canada", sans-serif;
+}
+
+/* Breadcrumb */
+.PDBreadcrumb {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 30px;
+}
+
+.PDBreadcrumbLink {
+    cursor: pointer;
+    color: #456882;
+    transition: color 0.15s;
+}
+
+.PDBreadcrumbLink:hover {
+    color: #2f6a8a;
+    text-decoration: underline;
+}
+
+.PDBreadcrumbSep {
+    margin: 0 6px;
+    color: #ccc;
+}
+
+/* Main container */
+.PDContainer {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+/* Image section */
+.PDImageSection {
+    flex: 1;
+    max-width: 480px;
+}
+
+.PDImageWrapper {
+    background: #f8f8f8;
+    border-radius: 16px;
+    border: 1px solid #e8e8e8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    min-height: 380px;
+}
+
+.PDImage {
+    width: 100%;
+    max-height: 380px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* Details section */
+.PDDetails {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.PDTitle {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.PDPrice {
+    font-size: 30px;
+    font-weight: 700;
+    color: #FF8A76;
+}
+
+.PDDivider {
+    height: 1px;
+    background: #ebebeb;
+    margin: 4px 0;
+}
+
+
+
+
+/* Meta info */
+.PDMeta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    padding: 16px 20px;
+}
+
+.PDMetaItem {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.PDMetaLabel {
+    color: #888;
+    font-weight: 600;
+    min-width: 90px;
+}
+
+.PDMetaValue {
+    color: #222;
+    font-weight: 500;
+}
+
+.PDInStock {
+    color: #2e7d32;
+}
+
+.PDOutStock {
+    color: #e53935;
+}
+
+/* Actions */
+.PDActions {
+    display: flex;
+    gap: 14px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.PDAddToCart {
+    background-color: #2f9e9e;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    font-family: "Radio Canada", sans-serif;
+}
+
+.PDAddToCart:hover { opacity: 0.85; }
+.PDAddToCart:active { transform: scale(0.97); }
+.PDAddToCart:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.PDBack {
+    background: #2f9e9e;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: "Radio Canada", sans-serif;
+}
+
+.PDBack:hover { background: #e2e2e2; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .PDPage {
+        padding: 20px;
+    }
+    .PDContainer {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .PDImageSection {
+        max-width: 100%;
+    }
+}
+
+
+.PDDescriptionSection {
+    background: #f8f8f8;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+}
+
+.PDSectionLabel {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #888;
+    margin: 0 0 8px;
+}
+
+.PDDescription {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.7;
+    margin: 0;
+}
+
+
+.PDFavorisBtn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1.5px solid #e8e8e8;
+    background: #2f9e9e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+    flex-shrink: 0;
+    color: #d1d5db;
+}
+
+.PDFavorisBtn svg {
+    width: 22px;
+    height: 22px;
+}
+
+.PDFavorisBtn:hover {
+    background: #2f9e9e;
+    border-color: #fda4af;
+    color: #f43f5e;
+    transform: scale(1.08);
+}
+
+.PDFavorisBtn.active {
+    background: #2f9e9e;
+    border-color: #fda4af;
+    color: #f43f5e;
+}
+
+
+.PDAvisSection {
+    margin-top: 60px;
+    border-top: 1px solid #e8e8e8;
+    padding-top: 30px;
+}
+
+.PDAvisTabs {
+    display: flex;
+    gap: 30px;
+    border-bottom: 1px solid #e8e8e8;
+    margin-bottom: 40px;
+}
+
+.PDAvisTab {
+    padding-bottom: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #888;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+}
+
+.PDAvisTab.active {
+    color: #1a1a1a;
+    border-bottom: 3px solid #1a1a1a;
+}
+
+.PDAvisContent {
+    display: flex;
+    gap: 80px;
+}
+
+.PDAvisLeft {
+    flex: 1;
+}
+
+.PDAvisRight {
+    flex: 2;
+}
+
+.PDAvisTitle {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #1a1a1a;
+    margin: 0 0 16px;
+}
+
+.PDAvisSubtitle {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.PDAvisEmpty {
+    font-size: 14px;
+    color: #888;
+    font-style: italic;
+}
+
+.PDAvisForm {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.PDAvisLabel {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.PDAvisStarSelect {
+    display: flex;
+    gap: 6px;
+}
+
+.PDAvisStar {
+    font-size: 28px;
+    color: #d1d5db;
+    cursor: pointer;
+    transition: color 0.15s, transform 0.1s;
+}
+
+.PDAvisStar:hover,
+.PDAvisStar.filled {
+    color: #f59e0b;
+    transform: scale(1.1);
+}
+
+.PDAvisTextarea {
+    border-radius: 10px;
+    border: 1.5px solid #e0e0e0;
+    padding: 14px;
+    font-size: 14px;
+    font-family: 'Radio Canada', sans-serif;
+    resize: vertical;
+    background: #fafafa;
+    color: #333;
+    transition: border-color 0.2s;
+}
+
+.PDAvisTextarea:focus {
+    outline: none;
+    border-color: #1976d2;
+    background: #fff;
+}
+
+.PDAvisSubmit {
+    background: #2f9e9e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: opacity 0.2s;
+    font-family: 'Radio Canada', sans-serif;
+    letter-spacing: 0.05em;
+}
+
+.PDAvisSubmit:hover { opacity: 0.85; }
+
+.PDAvisItem {
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.PDAvisStars {
+    color: #f59e0b;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.PDAvisItemHeader {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+
+.PDAvisUsername {
+    font-weight: 700;
+    font-size: 14px;
+    color: #333;
+}
+
+.PDAvisText {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.PDAvisShowMore {
+    margin-top: 16px;
+    background: #2f9e9e;
+    margin-right: 1px;
+    margin-right: 16px;
+    border: 1.5px solid #1a1a1a;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    transition: background 0.2s, color 0.2s;
+    font-family: 'Radio Canada', sans-serif;
+}
+
+.PDAvisShowMore:hover {
+    background: #66c5c5;
+    color: #fff;
+}

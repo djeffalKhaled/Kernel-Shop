@@ -13,6 +13,7 @@ import CartDrawer from "../component/CartDrawer"
 import { useNavigate } from "react-router-dom"
 import { auth } from "../config/auth"
 import Account from "./Account"
+import favorisIcon from "../icons/favoris1.png" 
 
 // @ts-ignore
 function NavBar({updateMainCateg, updateType, updateSearch}) {
@@ -91,8 +92,13 @@ function NavBar({updateMainCateg, updateType, updateSearch}) {
                 </div>
 
                 <div className = "BarButtons">
-                    <div className = "IconButton">
-                        <img src = {shopingIcon} onClick = {() => setIsCartOpen(true)} alt = "Cart"></img>
+
+                    <div className="IconButton" onClick={() => navigate("/favoris")} title="Mes Favoris">
+                        <img src={favorisIcon} alt="Favoris" />
+                    </div>
+                    
+                    <div className = "IconButton" title="My Cart">
+                        <img src = {shopingIcon} alt="Cart" onClick = {() => setIsCartOpen(true)}></img>
                     </div>
 
                     <div className = "IconButton LanguageButton" onMouseEnter = {() => setShowDropdown(true)} onMouseLeave = {() => setShowDropdown(false)}>
@@ -109,7 +115,7 @@ function NavBar({updateMainCateg, updateType, updateSearch}) {
                         )}
                     </div>
 
-                    <div className = "IconButton">
+                    <div className = "IconButton" title="My account">
                         {auth.isLoggedIn() === false ? (
                             <img src = {accountIcon} onClick = {showSignup} alt = "Account"></img>
                         ) : (

@@ -1,0 +1,17 @@
+[33mc42a096[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32makram[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: reset: moving to origin/main
+[33m9585bdd[m HEAD@{1}: commit: fixed all conflicts
+[33m1e7fb49[m HEAD@{2}: commit (merge): Fixed all remaining merge conflicts
+[33m06a2bc8[m[33m ([m[1;31morigin/akram[m[33m)[m HEAD@{3}: commit: update the form of adding new product + u can add commande
+[33me481667[m HEAD@{4}: pull origin main: Fast-forward
+[33m89f3e2d[m HEAD@{5}: commit: margin
+[33mcb5430a[m HEAD@{6}: commit: Cart functionality ...
+[33md86a7c2[m HEAD@{7}: commit: add cart page + functionality ..
+[33mbd25235[m HEAD@{8}: rebase (finish): returning to refs/heads/akram
+[33mbd25235[m HEAD@{9}: commit: Sign Up and Sign In Page
+[33mf6a868e[m HEAD@{10}: pull origin akram --rebase (start): checkout f6a868ea5c0ccfdffbf83566579d55bf462455c1
+[33m1d0140e[m HEAD@{11}: commit: Sign up and sign in page
+[33mae5e4a8[m HEAD@{12}: commit: feat: add language switch, authentication (login/signup), and cart page
+[33m2db9058[m[33m ([m[1;32mmain[m[33m)[m HEAD@{13}: checkout: moving from main to akram
+[33m2db9058[m[33m ([m[1;32mmain[m[33m)[m HEAD@{14}: commit (merge): merging
+[33m820801f[m HEAD@{15}: commit: merging
+[33m8d1f9d8[m HEAD@{16}: clone: from https://github.com/djeffalKhaled/Kernel-Shop.git

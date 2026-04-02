@@ -1,6 +1,7 @@
 .FormBackground {
     position: fixed;
     background-color: #0000003b;
+    z-index: 1000;
     inset: 0;
     animation: fadeIn 0.3s ease-in-out;
 }

@@ -6,7 +6,7 @@ import ProductList from "../component/ProductList";
 
 function HomePage() {
     const location = useLocation();
-    const [productCategory, setProductCategorie] = useState(""); // shows all products 
+    const [productCategory, setProductCategorie] = useState(""); 
     const [productType, setProductType] = useState("");
     const [search, setSearch] = useState("");
     useEffect(() => {

@@ -18,6 +18,7 @@ public class Review {
     private String id;
     private String productId;
     private String clientId;
+    private String username;
     private String comment;
     private int score;
     private Date dateRate;

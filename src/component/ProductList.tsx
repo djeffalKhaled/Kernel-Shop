@@ -122,7 +122,8 @@ function ProductList({productType, productCategorie, productNameSearch}) {
             <div className = "CenteredProductList">
                 <div className="ProductList">
                 {filteredProducts.map((item) => (
-                    <Product 
+                    <Product
+                    key={item.id} 
                     productId={item.id} 
                     title={item.name} 
                     image={item.image} 
