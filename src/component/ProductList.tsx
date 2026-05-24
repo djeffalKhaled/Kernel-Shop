@@ -18,7 +18,7 @@ function ProductList({productType, productCategorie, productNameSearch}) {
     );
 
     function toSlug(value: string): string {
-        return value.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^\w\-]+/g, "");
+        return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim().replace(/\s+/g, "-").replace(/[^\w\-]+/g, "");
     }
 
     async function getAllProducts() {
@@ -48,7 +48,7 @@ function ProductList({productType, productCategorie, productNameSearch}) {
     }
 
     async function getProductByCategory() {
-        const url = PORT_URL + "/api/products/category/" + toSlug(productCategorie);
+        const url = PORT_URL + "/api/products/category/" + encodeURIComponent(productCategorie);
         console.log("PRODUCT URL: ", url);
         setProducts([]); 
         setLoading(true);
@@ -112,6 +112,20 @@ function ProductList({productType, productCategorie, productNameSearch}) {
         
     }, [productCategorie, productType]);
 
+    function handleDelete(id: number) {
+    setProducts(prev => prev.filter(p => p.id !== id));
+    }
+
+    function handleUpdate(id: number, updated: any) {
+        setProducts(prev =>
+            prev.map(p => p.id === id ? {
+                ...p,
+                name: updated.title ?? p.name,
+                image: updated.image ?? p.image,
+                price: updated.price ?? p.price,
+            } : p)
+        );
+    }
 
     return (
         <>
@@ -128,6 +142,8 @@ function ProductList({productType, productCategorie, productNameSearch}) {
                     title={item.name} 
                     image={item.image} 
                     price={item.price}
+                    onDelete={handleDelete}
+                    onUpdate={handleUpdate}
                     />
                 ))}
                 

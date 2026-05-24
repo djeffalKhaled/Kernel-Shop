@@ -18,9 +18,12 @@ type ProductProps = {
     stock?: number;
     categorie?: string;
     type?: string;
+    onDelete?: (id: number) => void;
+    onUpdate?: (id: number, updated: Partial<ProductProps>) => void;
+
 };
 
-function Product({ productId, image, title, price, description = "", stock = 0, categorie = "", type = "" }: ProductProps) {
+function Product({ productId, image, title, price, description = "", stock = 0, categorie = "", type = "", onDelete, onUpdate }: ProductProps) {
 
     const context = useContext(CartContext);
     const navigate = useNavigate();
@@ -70,6 +73,7 @@ function Product({ productId, image, title, price, description = "", stock = 0, 
             console.log("DELETE Response:", res.status);
             alert("Produit supprimé ✅");
             setShowDeleteModal(false);
+            onDelete?.(productId); // informs parent list to remove the card
         } catch (err) {
             console.error(err);
         }
@@ -90,7 +94,7 @@ function Product({ productId, image, title, price, description = "", stock = 0, 
         setEditName(title);
         setEditDescription(description);
         setEditPrice(String(price));
-        setEditStock(String(stock));
+        setEditStock("0");
         setEditCategorie(categorie);
         setEditType(type);
         setEditPreviewUrl(image);
@@ -132,7 +136,7 @@ function Product({ productId, image, title, price, description = "", stock = 0, 
                     name: editName,
                     description: editDescription,
                     price: Number(editPrice),
-                    stock: Number(editStock),
+                    stock: stock + Number(editStock),
                     categorie: editCategorie,
                     type: editType,
                     imageUrl: imageUrl,
@@ -143,6 +147,11 @@ function Product({ productId, image, title, price, description = "", stock = 0, 
             console.log("Updated:", data);
             alert("Produit mis à jour ✅");
             setShowEditModal(false);
+            onUpdate?.(productId, { // ✅ instantly updates card in parent list
+            title: editName, description: editDescription,
+            price: Number(editPrice), stock: Number(editStock),
+            categorie: editCategorie, type: editType, image: imageUrl,
+        });
         } catch (err) {
             console.error(err);
         }
@@ -301,7 +310,7 @@ function Product({ productId, image, title, price, description = "", stock = 0, 
                             <input
                                 className="input"
                                 type="number"
-                                placeholder="Stock"
+                                placeholder="Quantité a ajouter"
                                 value={editStock}
                                 onChange={(e) => setEditStock(e.target.value)}
                             />

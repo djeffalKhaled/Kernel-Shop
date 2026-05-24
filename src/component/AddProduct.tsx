@@ -15,7 +15,7 @@ function AddProduct() {
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState("");
     const [selectedCategory, setSelectedCategory] = useState<string>("");
-    const [selectedSubcategory, setSelectedSubcategory] = useState<string>("");
+    const [selectedType, setSelectedType] = useState<string>("");
 
 
 
@@ -76,6 +76,8 @@ function AddProduct() {
                     description: description,
                     price: Number(price),
                     stock: Number(stock),
+                    categorie: selectedCategory,
+                    type: selectedType,
                     imageUrl: imageUrl
                 })
             })
@@ -96,7 +98,7 @@ function AddProduct() {
 
     const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedCategory(e.target.value);
-        setSelectedSubcategory("");
+        setSelectedType("");
     };
 
     return (
@@ -127,7 +129,7 @@ function AddProduct() {
                                 <option key={category} value={category}>{category}</option>
                             ))}
                         </select>
-                        <select className = "custom-select" value={selectedSubcategory} onChange={(e) => setSelectedSubcategory(e.target.value)} disabled={!selectedCategory}>
+                        <select className = "custom-select" value={selectedType} onChange={(e) => setSelectedType(e.target.value)} disabled={!selectedCategory}>
                             <option value="">Selectionner une type</option>
                             {selectedCategory && categorytypes[selectedCategory].map((sub) => (
                                 <option key={sub} value={sub}>{sub}</option>

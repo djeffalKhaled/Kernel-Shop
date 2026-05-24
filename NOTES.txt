@@ -1,14 +1,22 @@
+
+1) try to use auto refrech.. i dont need to everytime make refresh 
+react handle that issue automatically !!
+by use state ,use effect .. 
+c'est reglet !!!!
+
+2) ameliorer search fonctionalite press enter to validate ur search !!
+c'est reglet 
+
+3) qte si Qte = 22 et je fais une mis a jour de 4 le total sera 26! pas 4
++ the problemm ki ndir edit categorie w type ywalo null
 reports ( imprimer facture les factures .. );
 Livraison functionalite !!
 Notifications (c'est pas l'appelle de faire une application mobile )
-ameliorer search fonctionalite press enter to validate ur search !!
+
 add more functionalite ..etc
 favoris 
-try to use auto refrech.. i dont need to everytime make refresh 
-react handle that issue automatically !!
-by use state ,use effect .. 
 configure ur pc 
-qte si Qte = 22 et je fais une mis a jour de 4 le total sera 26! pas 4
+
 langages functionalite 
 a client can delete his own review 
 a supplier cant touch the review 

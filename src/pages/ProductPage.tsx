@@ -108,18 +108,7 @@ function ProductPage() {
             <NavBar updateMainCateg={() => {}} updateType={() => {}} updateSearch={() => {}} />
             <div className="PDPage">
 
-                {/* Breadcrumb */}
-                <div className="PDBreadcrumb">
-                    <span onClick={() => navigate("/products")} className="PDBreadcrumbLink">
-                        Accueil
-                    </span>
-                    <span className="PDBreadcrumbSep"> / </span>
-                    <span className="PDBreadcrumbLink" onClick={() => navigate(`/products?category=${product.categorie}`)}>
-                        {product.categorie}
-                    </span>
-                    <span className="PDBreadcrumbSep"> / </span>
-                    <span>{product.name}</span>
-                </div>
+                
 
                 <div className="PDContainer">
 

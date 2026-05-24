@@ -25,6 +25,8 @@ function NavBar({updateMainCateg, updateType, updateSearch}) {
     const [showAccont, setShowAccount] = useState(false);
     const [language, setLanguage] = useState("Francais");
     const [isCartOpen, setIsCartOpen] = useState(false);
+    const [committedSearch, setCommittedSearch] = useState("");
+
 
     const handleSelect = (lang: string) => {
         setLanguage(lang);
@@ -48,14 +50,14 @@ function NavBar({updateMainCateg, updateType, updateSearch}) {
     const handleCategories = (categ: string) => {
         updateMainCateg(categ);
         updateType(""); // inits the type to nothing for the user to choose (ProductList will show all products of a category)
-        window.history.pushState(null, "", `/client/category/${encodeURIComponent(categ)}`);
+        window.history.pushState(null, "", `/home`);
     };
 
     // suppliers only
     function goToAddProductPage() {
         navigate("/add-product");
     }
-
+    
     return (
         <>
             <div className="Bar">
@@ -63,12 +65,17 @@ function NavBar({updateMainCateg, updateType, updateSearch}) {
 
 
                 <div className="SearchInput">
-                    <input type="text" placeholder="Rechercher un produit..." 
-                    value={search}
-                    onChange={(e) => {
-                        setSearch(e.target.value);
-                        updateSearch(e.target.value);
-                    }}/>
+                    <input
+                        type="text"
+                        placeholder="Rechercher un produit..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                                updateSearch(search);
+                            }
+                        }}
+                    />
                     <div className = "Categories" onMouseEnter = {() => setShowCategories(true)} onMouseLeave = {() => setShowCategories(false)}>
                         <button type="button">
                             <img src={hamBurgMenu} className = "HamburgerIcon" />
